@@ -24,9 +24,12 @@ pipeline{
     }
    
     stage('git') {
+      steps{
         git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
         branch: 'develop' 
     }
+      }
+        
     stage('build'){
       steps{
         def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
