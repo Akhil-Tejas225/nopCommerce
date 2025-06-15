@@ -8,14 +8,21 @@ pipeline{
         pollSCM('* * * * *')
     }
   stages{
-    agent {
+    stage('declare_agent'){
+       agent {
          node {
             label 'dotnet'
          }
-    }
-    tools {
+       }
+        tools {
         maven 'DOTNET_HOME'
     }
+       steps{
+        echo "declaring agent"
+       }
+    
+    }
+   
     stage('git') {
         git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
         branch: 'develop' 
