@@ -28,7 +28,7 @@ pipeline{
         script {
            def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
            dotnetPublish configuration: 'Release', outputDirectory: 'published', project: "$projectpath" 
-           sh zip -r published.zip $(outputDirectory)/
+           sh zip -r published.zip $(outputDirectory)
   }
         }                         
       }   
