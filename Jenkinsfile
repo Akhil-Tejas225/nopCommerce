@@ -22,7 +22,8 @@ pipeline{
     }
     stage('build'){
       steps{
-        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: $(find . -name Nop.Web.csproj)
+        def projectpath = sh(script "find . -name Nop.Web.csproj", returnStdout: true).trim()
+        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: projectpath
                         
       }
     
