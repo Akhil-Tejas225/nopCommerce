@@ -27,7 +27,7 @@ pipeline{
       steps{
         // def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
       
-        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: 'workspace/nop/src/Presentation/Nop.Web/Nop.Web.csproj'
+        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: '/nop/src/Presentation/Nop.Web/Nop.Web.csproj'
                         
       }
     
