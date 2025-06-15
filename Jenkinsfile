@@ -15,7 +15,7 @@ pipeline{
          }
        }
         tools {
-        dotnet 'DOTNET_HOME'
+        dotnetsdk 'DOTNET_HOME'
     }
        steps{
         echo "declaring agent"
