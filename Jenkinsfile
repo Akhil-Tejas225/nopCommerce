@@ -5,7 +5,7 @@ pipeline{
         timeout(time: 30, unit: 'SECONDS')
     } 
     triggers{
-        pollSCM(* * * * *)
+        pollSCM('* * * * *')
     }
   stages{
     agent {
