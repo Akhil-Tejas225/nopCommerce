@@ -28,17 +28,14 @@ pipeline{
         script {
            def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
            dotnetPublish configuration: 'Release', outputDirectory: 'published', project: "$projectpath" 
-        }                         
-      }
-     steps{
-       sh zip -r published.zip published
+           sh zip -r published.zip published
   }
-    }
-
+        }                         
+      }   
    
 }
 
-   
+}
   //   stage('git') {
   //     steps{
   //       git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
