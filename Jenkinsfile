@@ -15,7 +15,7 @@ pipeline{
          }
        }
         tools {
-        maven 'DOTNET_HOME'
+        dotnet 'DOTNET_HOME'
     }
        steps{
         echo "declaring agent"
@@ -32,8 +32,8 @@ pipeline{
         
     stage('build'){
       steps{
-        def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
-        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: projectpath
+        // def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
+        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: '*/src/Nop.Web/Nop.Web.csproj'
                         
       }
     
