@@ -22,7 +22,7 @@ pipeline{
     }
     stage('build'){
       steps{
-        dotnetPublish configuration: 'Release', outputDirectory: 'published', project : $(find . -name 'Nop.Web.csproj')
+        dotnetPublish configuration: 'Release', outputDirectory: 'published', project: $(find . -name Nop.Web.csproj)
                         
       }
     
