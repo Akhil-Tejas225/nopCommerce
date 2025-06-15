@@ -33,8 +33,11 @@ pipeline{
     } 
 }
     stage('zip'){
-        sh 'zip -r publsihed.zip published'
+       steps{
+         sh 'zip -r publsihed.zip published'
+       }   
     }
+}
 }
   //   stage('git') {
   //     steps{
