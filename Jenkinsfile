@@ -7,22 +7,7 @@ pipeline{
     triggers{
         pollSCM('* * * * *')
     }
-  stages{
-    stage('declare_agent'){
-       agent {
-         node {
-            label 'dotnet'
-         }
-       }
-        tools {
-        dotnetsdk 'DOTNET_HOME'
-    }
-       steps{
-        echo "declaring agent"
-       }
-    
-    }
-   
+  stages{    
     stage('git') {
       steps{
         git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
@@ -31,12 +16,49 @@ pipeline{
       }
         
     stage('build'){
+      agent {
+         node {
+            label 'dotnet'
+         }
+       }
+        tools {
+        dotnetsdk 'DOTNET_HOME'
+    }
       steps{
         // def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
+      
         dotnetPublish configuration: 'Release', outputDirectory: 'published', project: '*/src/Nop.Web/Nop.Web.csproj'
                         
       }
     
   }
-  } 
+    }
+
+   
 }
+
+   
+  //   stage('git') {
+  //     steps{
+  //       git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
+  //       branch: 'develop' 
+  //   }
+  //     }
+        
+  //   stage('build'){
+  //     agent {
+  //        node {
+  //           label 'dotnet'
+  //        }
+  //      }
+  //       tools {
+  //       dotnetsdk 'DOTNET_HOME'
+  //   }
+  //     steps{
+  //       // def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
+      
+  //       dotnetPublish configuration: 'Release', outputDirectory: 'published', project: '*/src/Nop.Web/Nop.Web.csproj'
+                        
+  //     }
+    
+  // }
