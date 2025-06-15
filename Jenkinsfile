@@ -34,7 +34,7 @@ pipeline{
 }
     stage('zip'){
        steps{
-         sh 'zip -r published.zip $(workspace)/nop/published/*'
+         sh 'zip -r published.zip -i published/*'
        }   
     }
 }
