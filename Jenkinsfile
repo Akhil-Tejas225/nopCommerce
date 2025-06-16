@@ -33,7 +33,7 @@ pipeline{
     } 
       post{
         success{
-          zip zipfile: 'published.zip', 
+          zip zipFile: 'published.zip', 
             archive: true, 
             dir: './published', 
             overwrite: true
