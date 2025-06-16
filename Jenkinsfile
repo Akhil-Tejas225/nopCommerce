@@ -17,9 +17,9 @@ pipeline{
         
     stage('build'){
       agent {
-            label 'dotnet'
-         node {
-         }
+             node {
+               label 'dotnet'
+         }   
        }
         tools {
         dotnetsdk 'DOTNET_HOME'
