@@ -13,8 +13,11 @@ pipeline{
   stages{    
     stage('git') {
       steps{
+        dir('nopcommerce') {     
         git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
-        branch: 'develop' 
+        branch: 'develop'
+        }
+        
     }
       }
         
