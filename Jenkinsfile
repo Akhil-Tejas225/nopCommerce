@@ -7,6 +7,9 @@ pipeline{
     triggers{
         pollSCM('* * * * *')
     }
+    parameters {
+       choice(name: 'CHOICES', choices:['build','publish'], description: 'dotnet lifecycle commands')
+    }
   stages{    
     stage('git') {
       steps{
@@ -16,6 +19,12 @@ pipeline{
       }
         
     stage('build'){
+      when {
+        expression {
+          beforeAgent true
+          params.CHOICES == 'build' || params.CHOICES == 'publish'
+        }
+      }
       agent {
              node {
                label 'dotnet'
@@ -26,7 +35,7 @@ pipeline{
     }
       steps{
         script {
-           def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
+           def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()    // script{} is of groovy style adopted by me (akhil) to ensure avoid giving complete path of the csproj file
            dotnetPublish configuration: 'Release', outputDirectory: 'published', project: "$projectpath" 
           
         }  
@@ -42,27 +51,5 @@ pipeline{
 }  
 }
 }
-  //   stage('git') {
-  //     steps{
-  //       git url: 'https://github.com/Akhil-Tejas225/nopCommerce.git',
-  //       branch: 'develop' 
-  //   }
-  //     }
-        
-  //   stage('build'){
-  //     agent {
-  //        node {
-  //           label 'dotnet'
-  //        }
-  //      }
-  //       tools {
-  //       dotnetsdk 'DOTNET_HOME'
-  //   }
-  //     steps{
-  //       // def projectpath = sh(script: "find . -name Nop.Web.csproj", returnStdout: true).trim()
-      
-  //       dotnetPublish configuration: 'Release', outputDirectory: 'published', project: '*/src/Nop.Web/Nop.Web.csproj'
-                        
-  //     }
-    
-  // }
+
+//Lesson learnt: ensure agent and tools are part of same stage where you are running the build
