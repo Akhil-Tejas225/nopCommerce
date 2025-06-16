@@ -17,8 +17,8 @@ pipeline{
         
     stage('build'){
       agent {
-         node {
             label 'dotnet'
+         node {
          }
        }
         tools {
@@ -33,14 +33,13 @@ pipeline{
     } 
       post{
         success{
-          zip zipfile : 'published.zip', 
-          archive: true, 
-          dir: 'published', 
-          overwrite: true
+          zip zipfile: 'published.zip', 
+            archive: true, 
+            dir: './published', 
+            overwrite: true
         }
       }
-}
-    
+}  
 }
 }
   //   stage('git') {
