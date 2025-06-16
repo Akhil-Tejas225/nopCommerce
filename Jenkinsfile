@@ -47,7 +47,7 @@ pipeline{
     } 
       post{
         success{
-          dir(''nopcommerce'') {  
+          dir('nopcommerce') {  
             zip zipFile: 'published.zip', 
             archive: true, 
             dir: './published', 
