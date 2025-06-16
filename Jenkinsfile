@@ -20,8 +20,8 @@ pipeline{
         
     stage('build'){
       when {
+        beforeAgent true
         expression {
-          beforeAgent true
           params.CHOICES == 'build' || params.CHOICES == 'publish'
         }
       }
