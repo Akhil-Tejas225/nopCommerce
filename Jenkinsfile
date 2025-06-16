@@ -31,12 +31,13 @@ pipeline{
           
         }  
     } 
+      post{
+        success{
+          zip zipfile: 'published.zip', archive: true, dir: 'published' overwrite: true
+        }
+      }
 }
-    stage('zip'){
-       steps{
-         sh 'zip -r published.zip -i ./nop/published/*'
-       }   
-    }
+    
 }
 }
   //   stage('git') {
