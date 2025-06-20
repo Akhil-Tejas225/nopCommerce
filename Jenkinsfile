@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script{
                     def projpath = sh(script:"find . -name Nop.web.csproj",returnStdout: true).trim()
-                    dotnet sonarscanner begin /k:"project-key" /d:sonar.token="701811083fc0264e739307ac7ba6f6c668c16521"
+                    dotnet sonarscanner begin /d:sonar.token="701811083fc0264e739307ac7ba6f6c668c16521"
                     dotnet build "${projpath}"
                     dotnet sonarscanner end /d:sonar.token="701811083fc0264e739307ac7ba6f6c668c16521"
                 }
