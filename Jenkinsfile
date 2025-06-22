@@ -7,7 +7,7 @@ pipeline {
         cron('H */4 * * 1-5')
     }
     parameters {
-        choice(name: GOALS, choices: ['publish','build','test'], descrption: 'This is dotnet build life cycle' )
+        choice(name: GOALS, choices: ['publish','build','test'], description: 'This is dotnet build life cycle' )
     }
     stages{
         stage('git'){
