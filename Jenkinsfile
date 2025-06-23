@@ -28,9 +28,9 @@ pipeline {
                     label 'dotnet'
                 }
             }
-            tools {
-                dotnetsdk 'sonarscanerformsbuild'
-            }
+            // tools {
+            //     dotnetsdk 'sonarscanerformsbuild'
+            // }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_CRED', installationName: 'SONAR_QUBE') {
                 
