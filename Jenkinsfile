@@ -41,7 +41,7 @@ pipeline {
                   sh 'dotnet build **/src/NopCommerce.sln --no-incremental'
                   sh 'mkdir published'
                   sh 'dotnet publish -c Release **/src/Presentation/Nop.Web/Nop.Web.csproj -o published'
-                  sh '$SONAR_SCANNER end' 
+                  sh '$SONAR_SCANNER end /k:"Akhil-Tejas225_nopCommerce" /o:"spring-petclinic225"'
 
 
                 }
