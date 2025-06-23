@@ -28,9 +28,9 @@ pipeline {
                     label 'dotnet'
                 }
             }
-            tools {
-                dotnetsdk 'DOTNET_HOME'   
-            }
+            // tools {
+            //     dotnetsdk 'DOTNET_HOME'   
+            // }
             environment {
                 DOTNET_TOOLS_PATH = "${HOME}/.dotnet/tools"
             }
