@@ -29,10 +29,11 @@ pipeline {
                 }
             }
             tools {
-                dotnetsdk 'DOTNET_HOME'
+                dotnetsdk 'sonarscanerformsbuild'
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_CRED', installationName: 'SONAR_QUBE') {
+                
                   sh 'dotnet-sonarscanner begin /k:"Akhil-Tejas225_nopCommerce" /o:"spring-petclinic225"'
                   sh 'dotnet build **/src/NopCommerce.sln --no-incremental'
                   sh 'mkdir published'
