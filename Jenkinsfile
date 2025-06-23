@@ -32,10 +32,15 @@ pipeline {
                 dotnetsdk 'DOTNET_HOME'
             }
             steps {
-                 sh '''dotnet sonarscanner begin /k:"project-key" /o:"spring-petclinic225" /d:sonar.token="701811083fc0264e739307ac7ba6f6c668c16521"'''
-                 sh  '''dotnet build "**/src/Presentation/Nop.Web/Nop.Web.dll"'''
-                 sh  '''dotnet sonarscanner end /d:sonar.token="701811083fc0264e739307ac7ba6f6c668c16521"'''
+                withSonarQubeEnv(credentialsId: 'SONAR_CRED', installationName: 'SONAR_QUBE') {
+                  sh 'dotnet sonarscanner begin /k:"Akhil-Tejas225_nopCommerce" /o:"spring-petclinic225"'
+                  sh 'dotnet build **/src/NopCommerce.sln --no-incremental'
+                  sh 'mkdir published'
+                  sh 'dotnet publish -c Release **/src/Presentation/Nop.Web/Nop.Web.csproj -o published'
+                  sh 'dotnet sonarscanner end' 
 
+
+                }
             }
         }  
         
