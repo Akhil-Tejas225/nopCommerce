@@ -33,14 +33,15 @@ pipeline {
             // }
             environment {
                 DOTNET_TOOLS_PATH = "${HOME}/.dotnet/tools"
+                 SONAR_SCANNER = "${HOME}/.dotnet/tools/dotnet-sonarscanner"
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'SONAR_CRED', installationName: 'SONAR_QUBE') {
-                  sh 'dotnet-sonarscanner begin /k:"Akhil-Tejas225_nopCommerce" /o:"spring-petclinic225"'
+                  sh '$SONAR_SCANNER begin /k:"Akhil-Tejas225_nopCommerce" /o:"spring-petclinic225"'
                   sh 'dotnet build **/src/NopCommerce.sln --no-incremental'
                   sh 'mkdir published'
                   sh 'dotnet publish -c Release **/src/Presentation/Nop.Web/Nop.Web.csproj -o published'
-                  sh 'dotnet-sonarscanner end' 
+                  sh '$SONAR_SCANNER end' 
 
 
                 }
