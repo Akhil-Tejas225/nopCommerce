@@ -3,7 +3,7 @@ services:
     image: nop:1.0
     build: .
     ports:
-      - 5000:80
+      - 80:5000
     networks:
       - nop
   db:
@@ -22,5 +22,8 @@ services:
 networks:
   nop:
     driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.0.0/24
 volumes:
   test225:
