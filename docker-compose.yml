@@ -3,7 +3,7 @@ services:
     image: nop:1.0
     build: .
     ports:
-      - 8080:80
+      - 5000:80
     networks:
       - nop
   db:
