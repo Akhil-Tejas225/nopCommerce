@@ -3,7 +3,7 @@ LABEL "image"="NopCommerce"
 LABEL "author"="Akhil"
 RUN mkdir project
 WORKDIR  /project
-COPY /nopCommerce .
+COPY . .
 RUN mkdir published && dotnet publish -c Release ./src/Presentation/Nop.Web/Nop.Web.csproj -o published/
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
