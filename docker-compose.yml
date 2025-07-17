@@ -3,7 +3,7 @@ services:
     image: nop:1.0
     build: .
     ports:
-      - 8080
+      - 8080:80
     networks:
       - nop
   db:
@@ -13,7 +13,7 @@ services:
       MSSQL_PID: 'Developer'
       MSSQL_SA_PASSWORD: 'Pass@123'
     ports:
-      - 1433
+      - 1433:1433
     volumes:
       - test225:/var/opt/mssql/
     networks:
